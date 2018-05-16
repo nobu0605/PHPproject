@@ -45,7 +45,7 @@ class Poll {
 // ※ここの数字を変えることで、result.phpの初期値が変わる。
   public function getResults() {
     $data = array_fill(0, 8, 0);
-
+    // programmingの部分をあなたのDBのテーブル名に変更してください
     $sql = "select answer, count(id) as c from programming group by answer";
     foreach ($this->_db->query($sql) as $row) {
       $data[$row['answer']] = (int)$row['c'];
@@ -74,6 +74,7 @@ class Poll {
   }
 
   private function _save() {
+    // programmingの部分をあなたのDBのテーブル名に変更してください
     $sql = "insert into programming
             (answer, created, remote_addr, user_agent, answer_date)
             values (:answer, now(), :remote_addr, :user_agent, now())";
