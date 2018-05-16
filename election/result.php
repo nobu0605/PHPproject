@@ -14,7 +14,6 @@ $results = $poll->getResults();
 
 ?>
 
-<!-- ※※※※一時的にコメントアウト -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
