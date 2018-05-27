@@ -1,0 +1,377 @@
+/* 共通のCSS */
+* {
+  box-sizing: border-box;
+}
+
+html, body,
+ul, ol, li,
+h1, h2, h3, h4, h5, h6, p,
+form, input, div {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Lato, 'Hiragino Kaku Gothic Pro', sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  
+}
+
+h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: #4ac0b9;
+}
+
+
+a:visited {
+  color: #4ac0b9;
+}
+
+
+
+.container {
+  width: 1170px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* header */
+header{
+  height: 65px;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  z-index:10;
+  background-color: rgba(34, 49, 52, 0.9);
+  
+}
+
+.left-header{
+  float: left;
+}
+
+.title{
+  color: white;
+  font-size: 20px;
+  line-height: 65px;
+ 
+  cursor: pointer;
+}
+
+.right-header{
+  float: right;
+}
+
+.right-header a{
+  line-height: 65px;
+    padding: 0 15px;
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    
+}
+
+/* top-wrapper */
+
+.top-wrapper {
+  padding: 180px 0 100px 0;
+  background-image: url(image/gatag-00012494.jpg);
+  background-size: cover;
+  color: white;
+  height: 800px;
+  width: 100%
+
+}
+
+.top-wrapper h1{
+  letter-spacing: 15px;
+  text-align: center;
+  font-size: 100px;
+  font-family: Pacifico, sans-serif;
+  margin-top: 100px;
+}
+
+/*-------  ここからfeatures  --------*/
+#feature-carousel {
+  padding-bottom: 10px;
+}
+
+.feature-title h3{
+  font-family: Pacifico, sans-serif;
+  font-size: 40px;
+  
+  display: inline-block;
+  padding: 20px 0;
+  margin: 100px 0 50px;
+  border-top: 5px solid #4169e1;
+  border-bottom: 5px solid #4169e1;
+}
+
+.features {
+  text-align: center;
+  padding-bottom: 60px;
+}
+
+#features .container {
+  width: 936px;
+}
+
+.feature-box {
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 80px;
+  font-size: 30px;
+}
+
+.feature-box img{
+  height: 400;
+  border-radius: 5%;
+}
+
+.feature-box p{
+  padding-top: 20px;
+}
+
+#feature-carousel img {
+  display: inline-block;
+}
+
+#feature-carousel li {
+  background-color: #869791;
+}
+
+
+/* menu-wrapper */
+.menu-wrapper {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.logo {
+  font-family: Pacifico, sans-serif;
+  font-size: 40px;
+  
+  display: inline-block;
+  padding: 20px 0;
+  margin: 80px 0 30px;
+  border-top: 5px solid #4169e1;
+  border-bottom: 5px solid #4169e1;
+}
+
+.menu-items {
+  margin-bottom: 60px;
+}
+
+.menu-item {
+  display: inline-block;
+  width: 40%;
+  padding: 20px;
+  margin-top: 40px;
+  font-size: 20px;
+}
+
+.menu-item  img {
+  width: 50%;
+}
+
+.menu-item p{
+  margin-top: 10px;
+}
+
+input[type="submit" ] {
+  display: inline-block;
+  width: 160px;
+  height: 48px;
+  line-height: 48px;
+  padding: 0 20px;
+  border-radius: 30px;
+  border-style: none;
+  color: white;
+  background-color: rgba(34, 49, 52, 0.9);
+  font-size: 15px;
+  letter-spacing: 0.1em;
+}
+
+.menu-item input {
+  margin-left: 20px;
+  margin-right: 10px;
+  padding: 5px;
+  text-align: center;
+  width: 60px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/*-------  contact  --------*/
+
+
+
+.section-title-contact{
+  padding-left: 20px;
+  margin-bottom: 30px;
+
+
+}
+.section-title-contact h2{  
+  font-size: 40px;
+  font-family: Pacifico, sans-serif;
+  
+  display: inline-block;
+  padding: 20px 0;
+  border-top: 5px solid #4169e1;
+  border-bottom: 5px solid #4169e1;
+}
+
+.contact-form{
+  width: 50%;
+  float: left;
+  height: 650px;
+  display:inline-block;
+  vertical-align: top;
+
+}
+.contact-form input[type="text"], textarea{
+  margin: 0;
+  width: 85%;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 0;
+  margin-bottom: 20px;
+  padding: 15px;
+  opacity: 0.8;
+}
+.contact-form textarea{
+  height: 200px;
+}
+
+.btn-contact {
+  font-size: 18px;
+  font-weight: 600;
+  background-color: rgba(34, 49, 52, 0.9);
+  border: 1px solid white;
+  color: white;
+  box-shadow: inset 0 1px 0 rgba(34, 49, 52, 0.9);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+  padding: 15px 35px;
+  
+}
+
+
+.description{
+  width: 50%; 
+  float: left;
+  text-align: center;
+  height: 650px;
+}
+.description p{
+  padding-top:250px; 
+  font-size: 40px;
+  font-family: Pacifico, sans-serif;
+}
+
+/* 注文確認 */
+.order-wrapper {
+  text-align: center;
+  background-color: #F8F8F8;
+  line-height: 2;
+  letter-spacing: 0.1em;
+  width: 800px;
+  margin: 60px auto;
+  padding: 20px 0px 30px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 4px #CCD7D4;
+}
+
+.order-wrapper h2 {
+  font-size: 32px;
+  margin: 30px 0;
+  color: #322f33;
+}
+
+.order-wrapper p {
+  display: inline-block;
+  font-size: 22px;
+}
+
+.order-wrapper h3 {
+  border-top: 1px solid #DAE1E7;
+  margin-top: 30px;
+  padding-top: 30px;
+  font-size: 28px;
+  color: #42c7c1;
+}
+
+.order-wrapper h4 {
+  margin-top: 40px;
+  font-size: 25px;
+  color: #322f33;
+}
+
+.order-amount {
+  width: 40%;
+  text-align: left;
+}
+
+.order-price {
+  width: 35%;
+  text-align: right;
+}
+
+/*confirmation*/
+.confirmation{
+  font-size: 30px;
+  text-align: center;
+  background-color: #F8F8F8;
+  line-height: 2;
+  letter-spacing: 0.1em;
+  width: 500px;
+  margin: 60px auto;
+  padding: 20px 0px 30px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 4px #CCD7D4;
+}
+
+.error{
+  color: red;
+}
+/* footer*/
+
+footer{
+  height: 65px;
+  width: 100%;
+  background-color: rgba(34, 49, 52, 0.9);
+  color:white;
+  text-align: center;
+}
+footer p{
+  padding-top: 20px;
+}
+
+
+/*thanks*/
+
+.thanks{
+  text-align: center;
+  background-color: #F8F8F8;
+  line-height: 2;
+  letter-spacing: 0.1em;
+  width: 800px;
+  margin: 60px auto;
+  padding: 20px 0px 30px;
+  border-radius: 5px;
+  box-shadow: 0px 1px 4px #CCD7D4;
+
+}
+.thank_you p{
+ font-size: 30px;
+}
