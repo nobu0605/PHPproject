@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free coming soon template with jQuery countdown">
+
+  <title>My Birthday</title>
+
+  <!-- Bootstrap -->
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/css/bootstrap-theme.css" rel="stylesheet">
+  <link href="assets/css/font-awesome.css" rel="stylesheet">
+  <LINK rel="SHORTCUT ICON" href="無料のベルアイコン素材 その6.jpeg">
+  <!-- siimple style -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+    Theme Name: WeBuild
+    Theme URL: https://bootstrapmade.com/free-bootstrap-coming-soon-template-countdwon/
+    Author: BootstrapMade
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+</head>
+
+<body>
+
+  <div id="wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Suzuki Takanobu's Birthday</h1>
+          <h2 class="subtitle" style="font-size: 30px;">鈴木孝伸の誕生日-6月5日まであと</h2>
+          <div id="countdown" style="font-size: 50px;"></div>
+          <a  href="https://polca.jp/projects/6aNoRtFshEf" target="_blank"><input class="btn btn-primary btn-lg" value="Polcaで支援しよう!!" type="button" ></input></a>
+          <p style="margin-bottom: 0;"><br></p>
+          <a  href="https://www.amazon.co.jp/gp/registry/wishlist/3UGSC7ESJLMPM/ref=cm_wl_huc_view" target="_blank"><input class="btn btn-primary btn-lg" value="プレゼントを送ろう!!" type="button" ></input></a>
+
+          <div class="social">
+            <a href="https://www.facebook.com/bump0605" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/nobubump0" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row contctform">
+        <div class="col-md-8 col-md-offset-2">
+          <h3>Contact Me</h3>
+          <div id="sendmessage">Your message has been sent. Thank you!</div>
+          <div id="errormessage"></div>
+        </div>
+        <form action="confirm.php" method="post" role="form" class="contactForm">
+          <div class="col-md-4 col-md-offset-2">
+            <div class="form">
+              <div class="form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div class="validation"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form">
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                <div class="validation"></div>
+              </div>
+              <div class="text-center"><button type="submit" class="btn btn-theme">Send Message</button></div>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+          <p class="copyright">&copy; Suzuki Takanobu - All Rights Reserved</p>
+          <div class="credits">
+            <!--
+              All the links in the footer should remain intact. 
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=WeBuild
+            -->
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/jquery.countdown.min.js"></script>
+  <script type="text/javascript">
+    $('#countdown').countdown('2018/06/05', function(event) {
+      $(this).html(event.strftime(' %D 日 <br /> %H:%M:%S'));
+    });
+  </script>
+
+  
+
+</body>
+
+</html>
