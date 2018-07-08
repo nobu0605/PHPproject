@@ -89,8 +89,6 @@
 
     $start = ($page -1)*$page_row_number;
 
-    // 検索ボタンが押されたら、あいまい検索
-    // 検索ボタンが押された=GET送信されたsearch_wordというキーがある
     if (isset($_GET['search_word']) == true){
       // あいまい検索用SQL
       $sql = 'SELECT f.*,`u`.`name`,`u`.`img_name` FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` WHERE `f`.`feed` LIKE "%'.$_GET['search_word'].'%"';
@@ -135,9 +133,6 @@
           $comments_array[] = $comment_record;
         }
 
-        // 1行分の変数（連想配列）に、新しくcomments
-        // というキーを追加し、コメント情報を代入
-        // 二次元配列に入れている。commentsに入れているのは名前で指定して取りやすくするため
         $record["comments"] = $comments_array;
 
 
@@ -170,8 +165,6 @@
         }else{
           $record["like_flag"] = 0;
         }
-
-        // いいね済みのみのリンクが押されたときは、配列に既にいいね！してるものだけを代入する
 
         if (isset($_GET["feed_select"]) && ($_GET["feed_select"] == "likes") && ($record["like_flag"] == 1)) {
           $feeds[] = $record;          
