@@ -35,7 +35,7 @@
         if ($email == '') {
             $errors['email'] = 'blank';
         }
-        //※※※※※※※この部分がおかしい※※※※※※※※※
+      
         else {
             //1.DB接続
             require('../dbconnect.php');
