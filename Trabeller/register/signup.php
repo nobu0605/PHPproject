@@ -59,7 +59,6 @@
                 $errors['email'] = 'duplicate';
             }
         }
-        //※※※※※※※この部分がおかしい※※※※※※※※※
 
         $count = strlen($password); // hogehogeとパスワードを入力した場合、8が$countに代入される
 
