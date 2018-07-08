@@ -1,8 +1,8 @@
 <?php 
 session_start();
 // DB接続
-require('dbconnect.php');//ファイルの中身がそのまま出ている
-require('function.php');//関数を宣言してるだけ。ファイルの中身の全部処理してるわけじゃない
+require('dbconnect.php');
+require('function.php');
 
     $signin_user = get_signin_user($dbh,$_SESSION["id"]);
     check_signin($_SESSION["id"]);
@@ -20,14 +20,6 @@ require('function.php');//関数を宣言してるだけ。ファイルの中身
         if ($all == false) {
             break;
         }
-
-// SQL文作成
-
-// SQL文実行
-
-// 繰り返し文の中でフェッチ（配列に保存）
-
-// データ保存した配列を表示で使用する
 
     // feed数を取得するSQL文を作成
     $feed_sql = "SELECT COUNT(*) AS `feed_cnt` FROM `feeds` WHERE `user_id` = ?";
