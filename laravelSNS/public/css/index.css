@@ -1,0 +1,89 @@
+body{
+	margin:0px;
+}
+th {background-color:#999; color:fff; padding:5px 10px; }
+td {border: solid 1px #aaa; color:#999; padding:5px 10px; }
+hr { margin: 25px 100px; border-top: 1px dashed #ddd; }
+
+.header{
+	height: 70px;
+	background-color:rgba(0, 158, 227,.7);	
+	position: fixed;
+	width: 100%;
+	z-index: 10;
+	margin-top: -20px;
+}
+#header_right{
+	height: 100%;
+}
+
+#header_right p{
+	float: right;
+	margin-top: 20px;
+	margin-right: 20px;
+	color: white;
+	font-size: 15px  ;
+	cursor: pointer;
+	cursor: hand;
+}
+
+#header_right span{
+	font-size: 5px !important ;
+}
+
+.header_list{
+	height: 60px;
+	width: 150px;
+	background-color:rgba(0, 158, 227,.7);
+	display: none;
+	margin-top: 50px;
+	position: fixed;
+	right:0%;
+	z-index: 10;
+}
+
+.header_list h2{
+	font-size: 15px !important ;
+	margin-top: 20px;
+	text-align: center;
+	color: white;
+}
+
+.header h1{
+	color: white;
+	margin-left: 10px;
+	padding-top: 10px;
+	float: left;
+}
+.table_body{
+	border: solid 1px #aaa; 
+	padding:5px 10px; 
+	width: 20%;
+	margin-bottom: 20px;
+	background-color: white;
+	height: 130px;
+}
+.content_body{
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.table_body img{
+  float: left;
+  border-radius: 50%; 
+  height:45px; 
+  width:45px;
+  margin-right: 10px;
+  margin-left: -5px;
+}
+
+.table_body button{
+	margin:0px 10px 10px 10px !important ;
+	font-size: 10px;
+}
+
+.content{
+	margin-left: 20px;
+	margin-right: 20px;	
+	padding-top: 70px;
+}
