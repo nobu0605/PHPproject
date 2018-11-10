@@ -28,7 +28,7 @@
                             <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
 
                             <div class="col-md-6">
-                                <input style="border-style: none;" type="file" class="form-control" name="image" value="{{ old('image') }}"  accept="image/*">
+                                <input style="border-style: none;" type="file" class="form-control" name="image" value="{{ old('image') }}"  accept="image/*" required>
 
                                 @if ($errors->has('image'))
                                     <span class="invalid-feedback" role="alert">
