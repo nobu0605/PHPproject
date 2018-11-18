@@ -39,7 +39,9 @@
 		<div class="table_body col-md-6 col-xs-12"> 
 			<h4>{{$content['name']}}</h4>
 			<div class="content_body">
-				<img src="img/{{$content['image']}}" alt=""> 
+        <a href="/mypage?id={{$content['user_id']}}">
+          <img src="img/{{$content['image']}}" alt="">
+        </a>  
 				<h2>{{$content['content']}}</h2>
 			</div>
 			@if (Auth::check() AND $param['user']->id == $content['user_id'])
