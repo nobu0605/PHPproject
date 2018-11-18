@@ -32,7 +32,8 @@
 			<input style="border:1px #a9a9a9 solid;" type="text" name="content" >
 			<input type="submit" value="ツイート">
 		@else		
-	    @endif
+	  @endif
+	  
 	</form>
 		@foreach ($contents as $content)
 		<div class="table_body col-md-6 col-xs-12"> 
@@ -43,7 +44,11 @@
 			</div>
 			@if (Auth::check() AND $param['user']->id == $content['user_id'])
 				<a href="/edit?id={{$content['id']}}"><button>編集</button></a>
-				<a href="/delete?id={{$content['id']}}"><button onclick="return confirm('本当に削除しますか？');">削除</button></a>
+				<a href="/delete?id={{$content['id']}}">
+					<button onclick="return confirm('本当に削除しますか？');">
+						削除
+					</button>
+				</a>
 			@endif
 		    <div style="display:inline-block;" data-postid="{{ $content['id'] }}">
 		      <div class="class{{ $content['id'] }}" data-like="{{ $content['like_count'] }}">
