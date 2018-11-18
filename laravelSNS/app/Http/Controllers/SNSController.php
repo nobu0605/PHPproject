@@ -59,7 +59,6 @@ class SNSController extends Controller
         return redirect('/tweet');
     }
 
-
     public function edit(Request $request)
     {
         $user = Auth::user();
@@ -67,7 +66,6 @@ class SNSController extends Controller
         $content =Content::where('id', $request->id)->first();
         return view('edit',['content' => $content]);
     }
-
 
     public function update(Request $request)
     {
@@ -79,21 +77,17 @@ class SNSController extends Controller
         return redirect('/tweet');
     }
 
-
     public function remove(Request $request)
     {
         Content::where('id', $request->id)->delete();
         return redirect('/tweet');
     }
 
-
     public function user_logout()
     {
         Auth::logout();
         return redirect('/login');
-
     }
-
 
     public function like()
     {

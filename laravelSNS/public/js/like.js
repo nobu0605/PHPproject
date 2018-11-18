@@ -23,31 +23,31 @@ $('.like').on('click', function(event) {
             }
         })
 
-        //成功時の処理
-        .done(function() {
-            //「いいね」ボタンを押下済に切り替える
-            //まだ押してないとき
-            if (!$(likeId).hasClass('up')) {
-                likeCount ++;
+    //成功時の処理
+    .done(function() {
+        //「いいね」ボタンを押下済に切り替える
+        //まだ押してないとき
+        if (!$(likeId).hasClass('up')) {
+            likeCount ++;
+            event.target.parentNode.innerHTML 
+            = `<i class="fas fa-thumbs-up"></i><p style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;(${likeCount})</p>`;
+            $(likeId).addClass('up');
+            $(likeCountClass)[0].dataset.like = likeCount;
+        }else{
+        //いいね済み
+            if (likeCount <= 1 || likeCount == 'NULL') {
                 event.target.parentNode.innerHTML 
-                = `<i class="fas fa-thumbs-up"></i><p style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;(${likeCount})</p>`;
-                $(likeId).addClass('up');
-                $(likeCountClass)[0].dataset.like = likeCount;
+                = `<i class="far fa-thumbs-up"></i><p style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;</p>`; 
+                $(likeId).removeClass('up'); 
+                $(likeCountClass)[0].dataset.like = likeCount -1;
             }else{
-            //いいね済み
-                if (likeCount <= 1 || likeCount == 'NULL') {
-                    event.target.parentNode.innerHTML 
-                    = `<i class="far fa-thumbs-up"></i><p style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;</p>`; 
-                    $(likeId).removeClass('up'); 
-                    $(likeCountClass)[0].dataset.like = likeCount -1;
-                }else{
-                    likeCount --;
-                    event.target.parentNode.innerHTML 
-                    = `<i class="far fa-thumbs-up"></i><p style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;(${likeCount})</p>`; 
-                    $(likeId).removeClass('up');
-                    $(likeCountClass)[0].dataset.like = likeCount;
-                }
+                likeCount --;
+                event.target.parentNode.innerHTML 
+                = `<i class="far fa-thumbs-up"></i><p style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;(${likeCount})</p>`; 
+                $(likeId).removeClass('up');
+                $(likeCountClass)[0].dataset.like = likeCount;
             }
-        });
+        }
+    });
 
 });
