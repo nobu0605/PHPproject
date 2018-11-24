@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Response;
 use App\Content;
+use Image;
+use Illuminate\Http\UploadedFile;
+use Closure;
+use App\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class SNSController extends Controller
 {
@@ -22,15 +29,16 @@ class SNSController extends Controller
                 'contents.id',
                 'contents.user_id',
                 'contents.content',
+                'contents.image as post_image',
                 'like_count'           
             )
             ->orderBy('contents.id', 'desc')
-            ->paginate(5);
+            ->paginate(9);
 
         $contents_simple = 
             Content::leftjoin('users','contents.user_id','=','users.id')
             ->orderBy('contents.id', 'desc')
-            ->simplePaginate(5);
+            ->simplePaginate(9);
 
         $param = [
             'contents' => $contents,
@@ -51,10 +59,21 @@ class SNSController extends Controller
         $request->validate([
             'content' => 'required|max:255',
         ]);
+        $image_data = empty($request->image) ? "" : $request->image->hashName();
+
         $param = [
             'user_id' => $request->user_id,            
             'content' => $request->content,
+            'image' => $image_data
         ];
+
+        if (isset($request->image)) {
+            $file = $request->image;
+            $image = Image::make(file_get_contents($file->getRealPath()));
+            $filePath = 'public/img/';
+            $image->resize(1000, 500)->save(public_path().'/img/'.$file->hashName());
+        }
+
         Content::insert([$param]);
         return redirect('/tweet');
     }

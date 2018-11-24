@@ -30,20 +30,20 @@ $('.like').on('click', function(event) {
         if (!$(likeId).hasClass('up')) {
             likeCount ++;
             event.target.parentNode.innerHTML 
-            = `<i class="fas fa-thumbs-up"></i><p style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;(${likeCount})</p>`;
+            = `<i style="color:#ff69b4;" class="fas fa-heart"></i><p style="color:#ff69b4;display:inline-block;">&nbsp;&nbsp;(${likeCount})</p>`;
             $(likeId).addClass('up');
             $(likeCountClass)[0].dataset.like = likeCount;
         }else{
         //いいね済み
             if (likeCount <= 1 || likeCount == 'NULL') {
                 event.target.parentNode.innerHTML 
-                = `<i class="far fa-thumbs-up"></i><p style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;</p>`; 
+                = `<i style="color:#ff69b4;" class="far fa-heart"></i><p style="color:#ff69b4;display:inline-block;"></p>`; 
                 $(likeId).removeClass('up'); 
                 $(likeCountClass)[0].dataset.like = likeCount -1;
             }else{
                 likeCount --;
                 event.target.parentNode.innerHTML 
-                = `<i class="far fa-thumbs-up"></i><p style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;(${likeCount})</p>`; 
+                = `<i style="color:#ff69b4;" class="far fa-heart"></i><p style="color:#ff69b4;display:inline-block;">&nbsp;&nbsp;(${likeCount})</p>`; 
                 $(likeId).removeClass('up');
                 $(likeCountClass)[0].dataset.like = likeCount;
             }

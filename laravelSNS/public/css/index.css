@@ -61,14 +61,30 @@ hr { margin: 25px 100px; border-top: 1px dashed #ddd; }
 	width: 20%;
 	margin-bottom: 20px;
 	background-color: white;
-	height: 130px;
+	height: 400px;
 }
+.contents_wrapper{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
 .content_body{
 	display: flex;
 	align-items: center;
 	margin-bottom: 10px;
 }
-.table_body img{
+.content_post{
+	font-size: 15px;
+	margin-left: 10px;
+}
+.post_image{
+	width: 60%;
+	height: 80%;
+
+}
+.profile_img{
   float: left;
   border-radius: 50%; 
   height:45px; 
@@ -86,4 +102,15 @@ hr { margin: 25px 100px; border-top: 1px dashed #ddd; }
 	margin-left: 20px;
 	margin-right: 20px;	
 	padding-top: 70px;
+}
+
+.preview {
+	width:200px;
+	height:100px;
+  background-image: url(/img/m_e_others_500.png);
+  background-size: cover;
+}
+
+.input-file input[type="file"] {
+  opacity: 0;
 }
