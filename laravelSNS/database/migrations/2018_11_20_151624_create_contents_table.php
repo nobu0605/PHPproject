@@ -19,6 +19,7 @@ class CreateContentsTable extends Migration
             $table->string('content');
             $table->timestamps();
             $table->integer('like_count')->default(0);
+            $table->string('image');
         });
     }
 
