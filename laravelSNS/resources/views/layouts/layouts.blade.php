@@ -39,7 +39,6 @@
     <script type="text/javascript" src="js/Ajax.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
- 
     <script src="{{ asset('js/like.js') }}"></script>
     <script>
       var token = '{{ Session::token() }}';
