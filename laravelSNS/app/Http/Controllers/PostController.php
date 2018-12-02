@@ -38,10 +38,7 @@ class PostController extends Controller
         )
         ->where('contents.id', $post_id);
 
-         // $content = Post::find($post_id);
-         // $post_like = Post::find($post_id)->like_count;
          $post_like = $content->first()->like_count;
-
          $increase = [
             'like_count' => $post_like +1
          ];

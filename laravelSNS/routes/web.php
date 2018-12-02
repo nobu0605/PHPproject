@@ -4,7 +4,8 @@ use App\Http\Middleware\ProfileMiddleware;
 
 Route::get('/tweet','SNSController@index');
 Route::get('/like','SNSController@like');
-Route::post('/tweet','SNSController@create');
+Route::post('/tweet','SNSController@create')->name('tweet');
+Route::post('/comment', 'CommentController@postComment');
 
 Route::get('/edit','SNSController@edit');
 Route::post('/edit','SNSController@update');

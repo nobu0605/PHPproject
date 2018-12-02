@@ -14,14 +14,14 @@ use Illuminate\Http\UploadedFile;
 
 class ProfileMiddleware
 {
-    public function handle($request, Closure $next)
-    {   
-        $response = $next($request);
-        $file = $request->image;
-        $image = Image::make(file_get_contents($file->getRealPath()));
-        $filePath = 'public/img/';
-        $image->save(public_path().'/img/'.$file->hashName());
-        
-        return $response;
-    }
+  public function handle($request, Closure $next)
+  {   
+    $response = $next($request);
+    $file = $request->image;
+    $image = Image::make(file_get_contents($file->getRealPath()));
+    $filePath = 'public/img/';
+    $image->save(public_path().'/img/'.$file->hashName());
+    
+    return $response;
+  }
 }

@@ -24,8 +24,10 @@
 
 @section('content')
 	@if (Auth::check())
-		<p>Hello！{{$param['user']->name . ' さん'}}</p>
-		<img style="height:13vw;width: 13vw;" src="img/{{$param['user']->image}}" alt="">
+		<p>Hello！{{$user->name . ' さん'}}</p>
+		<a href="/mypage?id={{$user->id}}">
+			<img style="height:13vw;width: 13vw;" src="img/{{$user->image}}">
+		</a>
 		<p>Do you wanna tweet?</p>
 	@else
 		<p>※ログインしていません。（<a href="/login">ログイン</a>｜
@@ -45,55 +47,107 @@
 	@if (Auth::check())	
 		<form action="/tweet" enctype="multipart/form-data" method="post">
 			{{ csrf_field() }}
-				<input type="hidden" name="user_id" value="{{$param['user']->id}}">
+				<input type="hidden" name="user_id" value="{{$user->id}}">
 				<div>
-					<input style="height: 30px;border:1px #a9a9a9 solid;" type="text" name="content" >
-					<input class="input_file" accept="image/*" id="imgFile" type="file" name="image">
+					<input class="input_content" type="text" name="content" value="{{ old('content') }}">
+					<input class="input_file" accept="image/*" id="imgFile" 
+								 type="file" name="image" value="{{ old('image') }}"
+					>
 					<br/><br/>
-			    <div style="height: 200px;" class="preview"></div>
-				</div>
-				<br/>
+			    <div class="preview"></div>
+				</div><br/>
 				<input type="submit" value="ツイート">
 		</form>		
 	@endif
 
-	<div class="contents_wrapper">
+	<div class="contents_wrapper col-md-12">
 		@foreach ($contents as $content)
-		<div class="table_body col-md-4 col-xs-12"> 
-			<h4>{{$content['name']}}</h4>
-			<div class="content_body">
-				<a href="/mypage?id={{$content['user_id']}}">
-					<img class="profile_img" src="img/{{$content['image']}}" alt="">
-				</a>
-				<img class="post_image" src="img/{{$content['post_image']}}" alt="">  
-				<span class="content_post">{{$content['content']}}</span>
-			</div>
-			@if (Auth::check() AND $param['user']->id == $content['user_id'])
-				<a href="/edit?id={{$content['id']}}"><button>編集</button></a>
-				<a href="/delete?id={{$content['id']}}">
-					<button onclick="return confirm('本当に削除しますか？');">削除</button>
-				</a>
+		
+			@for ($i = 0; $i < 2 ; $i++)
+		
+			@if ($i == 1)
+			<div class="modal" id="modal{{ $content->id }}">
+		    <div class="overLay modalClose"></div>
+		    <div class="inner">
 			@endif
-			<div style="display:inline-block;" data-postid="{{ $content['id'] }}">
-				<div class="class{{ $content['id'] }}" data-like="{{ $content['like_count'] }}">
-					<div>
-							<a 
-								id="{{ $content['id'] }}" 
-								class="like {{like_check($content['id']) ? 'up' : ''}}"
-							>
-								<i style="color:#ff69b4;" class="{{like_check($content['id']) ? 'fas' : 'far'}} fa-heart"></i>
-								<p 
-									class="like_count show" 
-									style="display:{{ like_count_check($content['like_count']) }} color:#ff69b4;"
-								>
-									&nbsp;({{ $content['like_count'] }})
-								</p>
+
+				<div class="table_body col-xs-12 {{$i == 1 ? 'col-md-12' : 'col-md-4'}}"
+							style="
+							  height:{{ $i == 1 ? '100%' : '400'}};
+							  margin-bottom:{{ $i == 1 ? '0px' : '30px'}};"
+				> 
+					<h4>{{$content['name']}}</h4>
+					<div class="content_body">
+						<a href="/mypage?id={{$content->user_id}}">
+							<img class="profile_img" src="img/{{$content->image}}">
+						</a>
+						<img class="post_image" src="img/{{$content->post_image}}">  
+						<span class="content_post">{{$content->content}}</span>
+					</div>
+					
+					<div style="width: 100%; display: flex;justify-content:flex-start;">
+						@if (Auth::check() AND $user->id == $content['user_id'])
+							<a href="/edit?id={{$content->id}}">
+								<button class="btn btn-success">編集</button>
 							</a>
-						<span style="margin-left: 5px;"><i class="far fa-comment"></i></span>
+							<a href="/delete?id={{$content->id}}">
+								<button class="btn btn-primary" onclick="return confirm('本当に削除しますか？');">削除</button>
+							</a>
+						@endif
+
+						<div style="display:inline-block;" data-postid="{{ $content->id }}">
+							<div class="class{{ $content->id }}" data-like="{{ $content->like_count }}">
+								<div>
+									<a href="#" 
+										 id="{{ $content->id }}" 
+										 class="like {{like_check($content->id) ? 'up' : ''}}"
+									>
+										<i style="color:#ff69b4;" class="{{like_check($content->id) ? 'fas' : 'far'}} fa-heart"></i>
+										<p class="like_count show" 
+											 style="display:{{ like_count_check($content->like_count) }} color:#ff69b4;"
+										>
+											&nbsp;({{ $content->like_count }})
+										</p>
+									</a>
+									<span>
+										<a href="#modal{{ $content->id }}" class="modalOpen">
+											<i class="far fa-comment"></i>
+										</a>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="{{$i == 1 ? '' : 'invisible'}}">
+							<form action="/comment" method="post">
+								{{ csrf_field() }}
+								<input type="text" name="comment" >
+								<input type="hidden" name="user_id" value="{{$content->user_id}}">
+								<input type="hidden" name="content_id" value="{{$content->id}}">
+								<input type="submit">
+							</form>
+						</div>
 					</div>
 				</div>
+
+			@if ($i == 1)
+				<div class="comment_section" > 
+						@forelse($content->comments as $comment)
+		            @if ($comment->content_id == $content->id)
+				          <div style="height: 50px;">
+				            <img style="height:2vw;width: 2vw;" src="img/{{$content->image}}">
+				            <span>{{ $comment->comment }}</span>
+				          </div>
+		            @endif
+		        @empty
+		        <p>No posts yet</p> 
+						@endforelse
+				</div>
+
+			   </div>
 			</div>
-		</div>
+			@endif
+
+			@endfor
 		@endforeach
 	</div>	
 	{{$contents->links()}}
