@@ -117,7 +117,9 @@
 								</div>
 							</div>
 						</div>
-						<div class="{{$i == 1 ? '' : 'invisible'}}">
+						<div class="{{$i == 1 ? '' : 'invisible'}}"
+								 style="margin-left: 10px;" 
+						>
 							<form action="/comment" method="post">
 								{{ csrf_field() }}
 								<input type="text" name="comment" >
