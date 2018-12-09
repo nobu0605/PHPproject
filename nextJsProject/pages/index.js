@@ -4,6 +4,25 @@ import Head from '../components/Head.js'
 import Header from '../components/Header.js'
 import FadeInText from '../components/FadeInText.js'
 import FadeInLogo from '../components/FadeInLogo.js'
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker
+} from 'react-google-maps'
+
+const MyMapComponent = withScriptjs(
+  withGoogleMap(props => (
+    <GoogleMap
+      defaultZoom={18}
+      defaultCenter={{ lat: props.lat, lng: props.lng }}
+    >
+      {props.isMarkerShown && (
+        <Marker position={{ lat: props.lat, lng: props.lng }} />
+      )}
+    </GoogleMap>
+  ))
+)
 
 export default class Index extends React.Component {
   render() {
@@ -68,6 +87,15 @@ export default class Index extends React.Component {
           </div>
           <div style={{ width: '33%', background: 'rgba(65,105, 225,0.8)' }} />
         </div>
+        <MyMapComponent
+          isMarkerShown
+          lat={37.77493}
+          lng={-122.419416}
+          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBzo2Me32_0ofJ4A3dB8RqO0SLh9zxvk_o"
+          loadingElement={<div style={{ height: '100%' }} />}
+          containerElement={<div style={{ height: '320px' }} />}
+          mapElement={<div style={{ height: '100%' }} />}
+        />
       </div>
     )
   }
