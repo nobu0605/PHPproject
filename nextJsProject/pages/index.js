@@ -57,7 +57,7 @@ export default class Index extends React.Component {
               padding: 50
             }}
           >
-            <h1> What's Next.js</h1>
+            <h1>What's Next.js</h1>
             <p>
               IT’S A FRAMEWORK Next.js is opinionated and provides structure for
               how you build your app. Like Rails, the file-system is often the
