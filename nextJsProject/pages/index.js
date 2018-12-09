@@ -10,6 +10,7 @@ import {
   GoogleMap,
   Marker
 } from 'react-google-maps'
+import Footer from '../components/Footer.js'
 
 const MyMapComponent = withScriptjs(
   withGoogleMap(props => (
@@ -63,17 +64,19 @@ export default class Index extends React.Component {
         <div
           style={{
             display: 'flex',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            backgroundImage:
+              "url('static/img/https___www.pakutaso.com_shared_img_thumb_MIYADSC_3425-3.jpg')",
+            backgroundSize: '100% 100%'
           }}
         >
-          <div style={{ width: '33%', background: 'rgba(65,105, 225,0.8)' }} />
           <div
             style={{
-              height: 300,
-              float: 'center',
-              width: '34%',
+              width: '32%',
+              background: 'rgba(65,105, 225,0.3)',
               lineHeight: 2,
-              padding: 50
+              padding: 50,
+              color: '#d3d3d3'
             }}
           >
             <h1>What's Next.js</h1>
@@ -85,17 +88,49 @@ export default class Index extends React.Component {
               framework.
             </p>
           </div>
-          <div style={{ width: '33%', background: 'rgba(65,105, 225,0.8)' }} />
+          <div
+            style={{
+              height: 600,
+              width: '36%'
+            }}
+          />
+          <div
+            style={{
+              width: '32%',
+              background: 'rgba(65,105, 225,0.3)',
+              lineHeight: 2,
+              padding: 50,
+              color: '#d3d3d3'
+            }}
+          >
+            <h1>What's React</h1>
+            <p>
+              Declarative React makes it painless to create interactive UIs.
+              Design simple views for each state in your application, and React
+              will efficiently update and render just the right components when
+              your data changes. Declarative views make your code more
+              predictable and easier to debug.
+            </p>
+          </div>
         </div>
-        <MyMapComponent
-          isMarkerShown
-          lat={37.77493}
-          lng={-122.419416}
-          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBzo2Me32_0ofJ4A3dB8RqO0SLh9zxvk_o"
-          loadingElement={<div style={{ height: '100%' }} />}
-          containerElement={<div style={{ height: '320px' }} />}
-          mapElement={<div style={{ height: '100%' }} />}
-        />
+        <div
+          style={{
+            height: 400,
+            background: '#2E2E2E'
+          }}
+        >
+          <h1 style={{ color: 'white', padding: 20 }}>Place</h1>
+          <MyMapComponent
+            isMarkerShown
+            lat={37.77493}
+            lng={-122.419416}
+            googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBzo2Me32_0ofJ4A3dB8RqO0SLh9zxvk_o"
+            loadingElement={<div style={{ height: '100%' }} />}
+            containerElement={<div style={{ height: '420px' }} />}
+            mapElement={<div style={{ height: '100%' }} />}
+          />
+        </div>
+        <Footer />
       </div>
     )
   }
