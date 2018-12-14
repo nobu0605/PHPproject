@@ -11,12 +11,13 @@ export default class FadeInText extends React.Component {
     this.state = {
       children: [
         <h1
+          key={1}
           style={{
             color: 'white',
             fontSize: 80
           }}
         >
-          Welcom to mysite
+          Welcom To Mysite
         </h1>
       ]
     }

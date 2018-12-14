@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Link from 'next/link'
 
 export default class Header extends React.Component {
   render() {
@@ -15,7 +16,11 @@ export default class Header extends React.Component {
       >
         <HeaderText>Next</HeaderText>
         <div style={{ float: 'right' }}>
-          <HeaderText>Next.js</HeaderText>
+          <Link href="/slide">
+            <a>
+              <HeaderText>Next.js</HeaderText>
+            </a>
+          </Link>
           <HeaderText>React.js</HeaderText>
         </div>
       </div>
