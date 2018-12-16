@@ -1,9 +1,6 @@
-// Dependencies
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { VelocityTransitionGroup } from 'velocity-react'
 
-// Define <Greet />
 export default class FadeInLogo extends React.Component {
   constructor() {
     super()
