@@ -7,7 +7,7 @@ try {
   $poll = new \MyApp\Poll();
 } catch (Exception $e) {
   echo $e->getMessage();
-  exit;
+  exit; 
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
