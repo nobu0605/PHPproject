@@ -1,13 +1,12 @@
 <?php 
 session_start();
-// DB接続
+
 require('dbconnect.php');
 require('function.php');
 
     $signin_user = get_signin_user($dbh,$_SESSION["id"]);
     check_signin($_SESSION["id"]);
 
-// ユーザーの一覧を表示するため取得する
     $sql = 'SELECT * FROM `users` ';
     $data = array();
     $stmt = $dbh->prepare($sql);
@@ -16,26 +15,20 @@ require('function.php');
 
     while (true) {
         $all = $stmt->fetch(PDO::FETCH_ASSOC);
-        
         if ($all == false) {
             break;
         }
 
-    // feed数を取得するSQL文を作成
     $feed_sql = "SELECT COUNT(*) AS `feed_cnt` FROM `feeds` WHERE `user_id` = ?";
-    // 今回はusers.idです
     $feed_data = array($all["id"]);
 
-    // SQL文を実行
     $feed_stmt = $dbh->prepare($feed_sql);
     $feed_stmt->execute($feed_data);
-    // feed数を取得
     $feed = $feed_stmt->fetch(PDO::FETCH_ASSOC);
 
     $all["feed_cnt"] = $feed["feed_cnt"];
 
     $all_users[] = $all;
-
   }
 
  ?>
@@ -71,17 +64,17 @@ require('function.php');
                 <a href="#" style="color: #7F7F7F;"><?php echo $all_user['created'] ?>からメンバー</a>
               </div>
             </div>
-            
+
             <div class="row feed_sub">
               <div class="col-xs-12">
                 <span class="comment_count">投稿数 : <?php echo $all_user["feed_cnt"]; ?></span>
               </div>
             </div>
-          </div><!-- thumbnail -->
-      </div><!-- class="col-xs-12" -->
-    </div><!-- class="row" -->
+          </div>
+      </div>
+    </div>
     <?php } ?>
-  </div><!-- class="cotainer" -->
+  </div>
   <script src="assets/js/jquery-3.1.1.js"></script>
   <script src="assets/js/jquery-migrate-1.4.1.js"></script>
   <script src="assets/js/bootstrap.js"></script>

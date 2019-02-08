@@ -1,5 +1,4 @@
 <?php
-  // timeline.phpの処理を記載
 	  session_start();
     require('dbconnect.php');
     require('function.php');
@@ -8,9 +7,7 @@
 
 
     $signin_user = get_signin_user($dbh,$_SESSION["id"]);
-     // $id = $_SESSION['id'];
 
-    // データベースとの照合処理
     $sql = 'SELECT * FROM `users` WHERE `id`=?';
     $data = array($_SESSION['id']);
     $stmt = $dbh->prepare($sql);
@@ -32,30 +29,21 @@
     $members_all[] = $members;
   }
 
-
-
-        // 初期化
     $errors = array();
 
-    // ユーザーが投稿ボタンを押したら発動
     if (!empty($_POST)) {
 
-        // バリデーション
-        $feed = $_POST['feed']; // 投稿データ
+        $feed = $_POST['feed'];
 
-        // 投稿の空チェック
         if ($feed != '') {
-            // 投稿処理
+
             $sql = 'INSERT INTO `feeds` SET `feed`=?, `user_id`=?, `created`=NOW()';
             $data = array($feed, $signin_user['id']);
             $stmt = $dbh->prepare($sql);
             $stmt->execute($data);
-            
-            // POSTを空にする。URLで読み込み直す。
-            header('Location: timeline.php');
-            // 処理をここで終わらせるという意味。処理が重くなるから一回終了させる。
-            exit();
 
+            header('Location: timeline.php');
+            exit();
 
         } else {
             $errors['feed'] = 'blank';
@@ -81,7 +69,6 @@
 
     $record_cnt = $stmt_count->fetch(PDO::FETCH_ASSOC);
 
-    // ceilは小数点の切り上げ
     $all_page_number = ceil($record_cnt['cnt'] / $page_row_number);
 
     $page = min($page,$all_page_number);
@@ -90,11 +77,8 @@
     $start = ($page -1)*$page_row_number;
 
     if (isset($_GET['search_word']) == true){
-      // あいまい検索用SQL
       $sql = 'SELECT f.*,`u`.`name`,`u`.`img_name` FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` WHERE `f`.`feed` LIKE "%'.$_GET['search_word'].'%"';
     }else{
-    // 通常は全件取得
-    // LEFT JOINで全件取得
     $sql = "SELECT f.*,`u`.`name`,`u`.`img_name` FROM `feeds` AS `f` LEFT JOIN `users` AS `u` ON `f`.`user_id`=`u`.`id` WHERE 1 ORDER BY `created` DESC LIMIT $start,$page_row_number";
     }
 
@@ -102,7 +86,6 @@
     $stmt = $dbh->prepare($sql);
     $stmt->execute($data);
 
-    // 表示用の配列を初期化
     $feeds = array();
 
     while (true) {
@@ -117,7 +100,6 @@
 
         $comment_data = array($record["id"]);
 
-        // SQL文を実行
         $comment_stmt = $dbh->prepare($comment_sql);
         $comment_stmt->execute($comment_data);
 
@@ -135,29 +117,22 @@
 
         $record["comments"] = $comments_array;
 
-
-        // like数を取得するSQL文を作成
         $like_sql = "SELECT COUNT(*) AS `like_cnt` FROM `likes` WHERE `feed_id` = ?";
         $like_data = array($record["id"]);
 
-        // SQL文を実行
         $like_stmt = $dbh->prepare($like_sql);
         $like_stmt->execute($like_data);
-        // like数を取得
         $like = $like_stmt->fetch(PDO::FETCH_ASSOC);
 
         $record["like_cnt"] = $like["like_cnt"];
 
-        //like済みか判断するSQlを作成
         $like_flag_sql = "SELECT COUNT(*) as `like_flag` FROM `likes` WHERE `user_id` =? AND `feed_id` =?";
 
         $like_flag_data = array($_SESSION["id"],$record["id"]);
 
-        //SQL実行
         $like_flag_stmt = $dbh->prepare($like_flag_sql);
         $like_flag_stmt->execute($like_flag_data);
 
-        //likeしてる数を取得
         $like_flag = $like_flag_stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($like_flag["like_flag"] > 0 ){
@@ -167,16 +142,14 @@
         }
 
         if (isset($_GET["feed_select"]) && ($_GET["feed_select"] == "likes") && ($record["like_flag"] == 1)) {
-          $feeds[] = $record;          
+          $feeds[] = $record;
         }
-
-        //feed_selectが指定されてないときは全件表示
         if (!isset($_GET["feed_select"])) {
           $feeds[] = $record;
         }
 
         if (isset($_GET["feed_select"]) && ($_GET["feed_select"] == "news") ) {
-          $feeds[] = $record;          
+          $feeds[] = $record;
         }
     }
 
@@ -218,7 +191,6 @@
           <?php if (isset($_GET["feed_select"]) && ($_GET["feed_select"] == "likes")) { ?>
           <li><a href="timeline.php?feed_select=news">Newer</a></li>
           <li class="active"><a href="timeline.php?feed_select=likes">Liked</a></li>
-          <!-- <li><a href="timeline.php?feed_select=follows">フォロー</a></li> -->
         <?php } else{ ?>
           <li class="active"><a href="timeline.php?feed_select=news">Newer</a></li>
           <li><a href="timeline.php?feed_select=likes">いいね！済み</a></li>
@@ -285,8 +257,6 @@
 
                 </div>
 
-                <!-- コメントが押されたら表示される領域 --><!-- 
-                <div class="collapse" id="collapseComment"> -->
                   <?php include("comment_view.php"); ?>
                 </div>
             </div>
@@ -305,7 +275,7 @@
         </div>
       </div>
     <div class="blank col-md-0  col-xs-3">
-      
+
     </div>
     <div class="ranking-wrapper col-md-3  col-xs-9 ">
       <div class="ranking_title ">
@@ -325,9 +295,9 @@
                 <h4 class="cost"><?php echo $rankings[$i]["price"]; ?></h4>
                 <h4 class="like" style="text-align: center;">いいね数<?php echo $rankings[$i]["total"]; ?></h4>  
 
-              </div><!-- /card_item -->
+              </div>
             </a>
-          </div><!-- card1 -->
+          </div>
         </div>
       <?php } ?>
     </div>

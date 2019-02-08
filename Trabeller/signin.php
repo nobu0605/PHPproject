@@ -1,53 +1,38 @@
 <?php
     require('dbconnect.php');
     session_start();
-    // サインイン処理
-    // 初期化
+
     $errors = array();
 
     if (!empty($_POST)) {
-        // ①
         $email = $_POST['input_email'];
         $password = $_POST['input_password'];
 
-                // メールの空チェック
         if ($email == '') {
             $errors['signin'] = 'blank';
         }
 
-        // パスワードの空チェック
         if ($password == '') {
             $errors['signin'] = 'blank';
         }
 
 
         if ($email != '' && $password != '') {
-            // データベースとの照合処理
           $sql = 'SELECT * FROM `users` WHERE `email`=?';
           $data = array($email);
           $stmt = $dbh->prepare($sql);
           $stmt->execute($data);
           $record = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // メールアドレスでの本人確認
         if ($record == false) {
               $errors['signin'] = 'failed';
         } else {
             if (password_verify($password,$record['password'])){
-          //認証成功
-            
-          //※追加部分
-          //SESSION変数にIDを保存
-              //※追加部分
-          //SESSION変数にIDを保存
-          $_SESSION['id'] = $record['id'];
-          
 
-  
-          //timeline.phpに移動
+              $_SESSION['id'] = $record['id'];
+
           header("Location:timeline.php");
           exit();
-
           }
           else{
             $errors['signin'] = 'failed';

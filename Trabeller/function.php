@@ -1,7 +1,7 @@
 <?php 
 
 function get_signin_user($dbh,$user_id){
-    // データベースとの照合処理
+
     $sql = 'SELECT * FROM `users` WHERE `id`=?';
     $data = array($user_id);
     $stmt = $dbh->prepare($sql);

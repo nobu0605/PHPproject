@@ -13,23 +13,16 @@ check_signin($_SESSION["id"]);
   }
 
 
-// ユーザーの一覧を表示するため取得する
     $profile_sql = "SELECT * FROM `users`  WHERE `id` =?";
 
     $profile_data = array($user_id);
 
-    // SQL文を実行
     $profile_stmt = $dbh->prepare($profile_sql);
     $profile_stmt->execute($profile_data);
 
     $profile_user = $profile_stmt->fetch(PDO::FETCH_ASSOC);
 
 
-    // 1行分の変数（連想配列）に、新しくprofiles
-    // というキーを追加し、コメント情報を代入
-
-    // Following 一覧取得
-    // このプロフィールページの人
     $following_sql = "SELECT `fw`.*,`u`.`name`,`u`.`img_name`,`u`.`created` FROM `followers` AS `fw` LEFT JOIN `users` AS `u` ON `fw`.`follower_id` = `u`.`id` WHERE `user_id` =?";
     $following_data = array($user_id);
     $following_stmt = $dbh->prepare($following_sql);
@@ -47,8 +40,6 @@ check_signin($_SESSION["id"]);
       $following[] = $following_record;
     }
 
-    // follower一覧の取得
-    // 今表示されているプロフィールページの人が、フォローされてる
     $follower_sql = "SELECT `fw`.*,`u`.`name`,`u`.`img_name`,`u`.`created` FROM `followers` AS `fw` LEFT JOIN `users` AS `u` ON `fw`.`user_id` = `u`.`id` WHERE `follower_id` =?";
 
     $follower_data = array($user_id);
@@ -112,7 +103,7 @@ check_signin($_SESSION["id"]);
             <a href="#tab2" data-toggle="tab">Following</a>
           </li>
         </ul>
-        <!--タブの中身-->
+
         <div class="tab-content">
           <div id="tab1" class="tab-pane fade in active">
 
@@ -148,10 +139,10 @@ check_signin($_SESSION["id"]);
           </div>
         </div>
 
-      </div><!-- class="col-xs-12" -->
+      </div>
 
-    </div><!-- class="row" -->
-  </div><!-- class="cotainer" -->
+    </div>
+  </div>
   <script src="assets/js/jquery-3.1.1.js"></script>
   <script src="assets/js/jquery-migrate-1.4.1.js"></script>
   <script src="assets/js/bootstrap.js"></script>

@@ -1,6 +1,5 @@
 <?php
 
-	//feed_idを取得
 	$feed_id = $_GET["feed_id"];
 
 	require('dbconnect.php');
@@ -10,21 +9,15 @@
     $stmt->execute();
     $feed_feed = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  // 更新ボタンが押されたら（POST送信されたデータが存在したら）
     if (!empty($_POST)) {
-      // Update文でDBに保存
       $update_sql = "UPDATE `feeds` SET `feed` = ? WHERE `feeds`.`id` = ?";
       $date = array($_POST["feed"],$feed_id);
 
-      // SQL文実行
       $stmt = $dbh->prepare($update_sql);
       $stmt->execute($date);
 
-      // 一覧に戻る
       header("Location: timeline.php");
     }
-
-
 
 ?>
 
@@ -49,9 +42,7 @@
   				<input type="submit" value="更新" class="btn btn-warning btn-xs">
   			</form>
   		</div>
-  	
   	</div>
-  	
   </div>
 
   <script src="assets/js/jquery-3.1.1.js"></script>
