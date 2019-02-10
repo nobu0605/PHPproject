@@ -1,5 +1,5 @@
 # PHPproject
-PHPで作ったWebアプリをまとめています。PHP、jQueryを主に使っています。
+ポートフォリオリンク
 
 Birth_Day
 http://nobu.sunnyday.jp/Birth_Day/index.html
