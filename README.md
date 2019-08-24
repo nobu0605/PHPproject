@@ -13,5 +13,5 @@ http://nobu.sunnyday.jp/Trabeller/index.html
 election
 http://nobu.sunnyday.jp/election/index.php
 
-suzuki_quiz_php
+suzuki_quiz
 http://nobu.sunnyday.jp/suzuki_quiz_php/index.php
